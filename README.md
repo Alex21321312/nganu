@@ -7,6 +7,7 @@ Repositori ini berisi panduan langkah demi langkah untuk menginisiasi dan membua
 Sebelum dimulai, pastikan sistem Anda sudah terinstal:
 * **Python** (versi 3.x atau terbaru). Bisa diunduh di [python.org](https://www.python.org/).
 * **Pip** (Package installer untuk Python, biasanya sudah sepaket dengan instalasi Python).
+* **SQL Server 2012/2025** (Database default dari project_1).
 
 ---
 
@@ -32,4 +33,17 @@ myworld/Scripts/activate
 source myworld/bin/activate
 ```
 
+Setelah virtual environment aktif, instal Django menggunakan pip:
 
+```bash
+python -m pip install django
+```
+
+### 2. Membuat aplikasi Django
+Proyek adalah fondasi utama yang akan menampung konfigurasi aplikasi Anda. Buat proyek baru dengan nama project_1 (Anda bebas mengganti namanya, project_1 ini hanya digunakan agar folder project_1 di dalam GitHub sesuai dengan yang akan anda aktifkan):
+
+```bash
+django-admin startproject project_1 .
+```
+
+Catatan: Tanda titik . di akhir perintah berguna agar Django membuat file proyek di folder saat ini tanpa membuat sub-folder baru yang bertumpuk.
