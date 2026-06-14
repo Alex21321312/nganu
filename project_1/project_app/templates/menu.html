@@ -1,0 +1,374 @@
+{% load lucide %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Menu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .add-btn {
+            background: #4f46e5;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .add-btn:hover {
+            background: #3d37b4;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            table-layout: fixed;
+        }
+
+        th, td {
+            padding: 14px;
+            border: 1px solid #ddd;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        th:last-child, td:last-child {
+            white-space: normal;
+            overflow: visible;
+            width: 180px; 
+        }
+
+        th {
+            background: #4f46e5;
+            color: white;
+        }
+
+        .edit-btn {
+            background: orange;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin: 10px;
+        }
+
+        .delete-btn {
+            background: crimson;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin: 10px;
+        }
+
+        .nav {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .logout-btn {
+            background: #ef4444;
+            color: white;
+            padding: 10px 18px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
+        }
+
+        .menu-btn {
+            background: #4f46e5;
+            color: white;
+            padding: 10px 18px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-right: 10px;
+            text-align: center;
+        }
+
+        .menu-btn:hover {
+            background: #3d37b4;
+        }
+
+        .top-bar .search-container {
+            margin: 20px 0;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .top-bar .search-container input {
+            padding: 10px;
+            width: 220px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+            height: 42px;
+            box-sizing: border-box;
+        }
+
+        .search-container button {
+            padding: 10px 15px;
+            border: none;
+            background: #4f46e5;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            height: 42px;
+        }
+
+        .search-container button:hover {
+            background: #4338ca;
+        }
+
+        .warning-text {
+            color: red;
+            margin-left: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Media Queries */
+
+        /* iPad Pro */
+        /* @media (min-width: 1500px) {
+            body {
+                zoom: 220%;
+                margin: 0 auto;
+            }
+        } */
+
+        /* Tablet & Laptops */
+        @media (max-width: 1024px) {
+            html {
+                font-size: 90%;
+            }
+
+            th, td {
+                padding: 10px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            th:last-child, td:last-child {
+                white-space: normal;
+                overflow: visible;
+                width: 120px;
+            }
+
+            .edit-btn, .delete-btn {
+                display: block;
+                margin: 6px auto; 
+                width: 85%; 
+                box-sizing: border-box;
+            }
+
+            .nav {
+                position: static;
+                display: flex;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .add-btn {
+                margin-bottom: 10px;
+            }
+        }
+
+        /* Mobile Phone */
+        @media (max-width: 480px) {
+            html {
+                font-size: 100%; 
+            }
+
+            body {
+                padding: 15px; 
+            }
+
+            .top-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .top-bar .search-container {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .top-bar .search-container input {
+                flex-grow: 1;
+                width: auto; 
+            }
+
+            .add-btn {
+                text-align: center;
+                margin-bottom: 30px;
+                width: 50%;
+            }
+
+            .edit-btn, .delete-btn {
+            display: block;
+            margin: 6px auto; 
+            width: 100%; 
+            box-sizing: border-box;
+            }
+        }
+    </style>
+    <script>
+        function searchUser() {
+
+            let input = document.getElementById("searchInput")
+                .value
+                .toLowerCase()
+                .trim();
+
+            let usernames = document.querySelectorAll(".username");
+
+            let warning = document.getElementById("warningText");
+
+            let found = false;
+
+            warning.innerText = "";
+
+            usernames.forEach(function(user) {
+
+                let text = user.innerText.toLowerCase();
+
+                if (text === input) {
+                    found = true;
+                    user.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+                    user.parentElement.style.backgroundColor = "#fff6a1";
+                    setTimeout(() => {
+                        user.parentElement.style.backgroundColor = "";
+                    }, 10000);
+                }
+            });
+
+            if (!found) {
+                warning.innerText = "Username not found!";
+            }
+        }
+
+        document.getElementById("searchInput")
+            .addEventListener("keypress", function(e) {
+
+                if (e.key === "Enter") {
+                    searchUser();
+                }
+        });
+        </script>
+</head>
+
+<body>
+
+    <h1>User Management</h1>
+
+    <div class="nav">
+        <a href="{% url 'home' %}" class="menu-btn">
+            Menu
+        </a>
+        <a href="{% url 'logout' %}" class="logout-btn">
+            Logout
+        </a>
+    </div>
+
+    <div class="top-bar">
+        <div class="search-container">
+            <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="Search username..."
+            >
+
+            <button onclick="searchUser()" class="search-button">{% lucide "search" %}</button>
+
+            <span class="warning-text" id="warningText"></span>
+        </div>
+
+        <a href="{% url 'add_user' %}" class="add-btn">
+            Add User
+        </a>
+    </div>
+
+    <table>
+
+        <tr>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Group User</th>
+            <th>Audit Date</th>
+            <th>Audit User</th>
+            <th>Action</th>
+        </tr>
+
+        {% for user in users %}
+        <tr>
+
+            <td class="username" title="{{ user.username }}">{{ user.username|truncatechars:13 }}</td>
+
+            <td title="{{ user.password }}">{{ user.password|truncatechars:13 }}</td>
+
+            <td title="{{ user.id_group_user }}">{{ user.id_group_user|truncatechars:13 }}</td>
+
+            <td title="{{ user.audit_date|date:'F j, Y, G:i' }}">{{ user.audit_date|date:"F j, Y, G:i" }}</td>
+
+            <td title="{{ user.audit_user }}">{{ user.audit_user|truncatechars:13 }}</td>
+
+            <td>
+
+                <a href="{% url 'edit_user' user.username %}"
+                   class="edit-btn">
+                    Edit
+                </a>
+
+                <a href="{% url 'delete_user' user.username %}"
+                   class="delete-btn"
+                   onclick="return confirm('Delete this user?')">
+                    Delete
+                </a>
+
+            </td>
+
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style>
+
+        body{
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4f46e5, #9333ea);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box{
+            background:white;
+            padding: 40px;
+            width: 350px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .login-box h1{
+            text-align: center;
+            margin-bottom: 30px;
+            color:#333;
+        }
+
+        .input-group{
+            margin-bottom: 20px;
+        }
+
+        .input-group input{
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus{
+            border-color: rgb(79, 70, 229);
+            outline: none;
+            box-shadow: 0 0 5px rgba(79,70,229,0.5);
+        }
+
+        .login-btn{
+            width: 100%;
+            padding: 12px;
+            background:#4f46e5;
+            border: none;
+            color:white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover{
+            background: #3730a3;
+        }
+
+        .error{
+            color:red;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        /* Media Queries */
+
+        /* Mobile Phone */
+        .login-box {
+            background:white;
+            padding: 20px;
+            width: 300px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="login-box">
+
+        <h1>Login</h1>
+
+        {% if error %}
+            <div class="error">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="input-group">
+                <input type="text"
+                       name="username"
+                       id="username"
+                       placeholder="Username">
+            </div>
+
+            <div class="input-group">
+                <input type="password"
+                       name="password"
+                       id="password"
+                       placeholder="Password">
+            </div>
+
+            <button type="submit" class="login-btn">
+                Login
+            </button>
+
+        </form>
+
+    </div>
+
+</body>
+</html>

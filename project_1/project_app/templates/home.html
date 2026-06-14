@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4f46e5, #9333ea);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn {
+            background-color: rgb(255, 255, 255);
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 0.6rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.5s;
+        }
+
+        .btn:hover {
+            background-color: white;
+            color: black;
+        }
+
+        .btn .btn:focus {
+            border-color: white;
+            outline: none;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .content h1 {
+            position: absolute;
+            top: -200px;
+            white-space: nowrap;
+        }
+
+        .nav {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .logout-btn {
+            background: #ef4444;
+            color: white;
+            padding: 10px 18px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
+        }
+
+        /* Media Queries */
+
+        /* Mobile Phone */
+        @media (max-width: 480px) {
+            .content {
+                flex-direction: column;
+                width: 100%;
+                padding: 0 20px;
+                box-sizing: border-box;
+            }
+
+            .content h1 {
+                position: relative;
+                top: 0;
+                margin-bottom: 40px;
+                font-size: 28px;
+                white-space: normal;
+                text-align: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                padding: 15px 20px;
+            }
+
+            .nav {
+                top: 15px;
+                right: 15px;
+            }
+
+            .logout-btn {
+                padding: 8px 14px;
+                font-size: 14px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Welcome {{ username }}</h1>
+
+        <a href="{% url 'menu' %}" class="btn">
+            User Menu
+        </a>
+    </div>
+
+    <div class="nav">
+        <a href="{% url 'logout' %}" class="logout-btn">
+            Logout
+        </a>
+    </div>
+</body>
+</html>

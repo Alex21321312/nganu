@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add User</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 7%;
+            background: linear-gradient(135deg, #4f46e5, #9333ea);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            width: 100%;
+            height: 80px;
+        }
+
+        .navbar h1 {
+            color: white;
+            font-size: 28px;
+        }
+
+        /* MAIN LAYOUT */
+
+        .main {
+            display: flex;
+            margin-top: 80px;
+            height: calc(100vh - 80px);
+            overflow: hidden;
+        }
+
+        /* LEFT MENU */
+
+        .left-menu {
+            width: 260px;
+            background: white;
+            padding: 25px;
+            border-right: 1px solid #ddd;
+            overflow-y: auto;
+            height: 100%;
+        }
+
+        .user-list {
+            list-style: none;
+        }
+
+        .user-list li {
+            margin-bottom: 2px;
+        }
+
+        .user-list a {
+            display: block;
+            padding: 12px;
+            color: #333;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .user-list a:hover {
+            background: #f3f3f3;
+            color: black;
+        }
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            background: #ef4444;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .back-btn:hover {
+            background: #dc2626;
+        }
+
+        /* CONTAINER */
+
+        .container {
+            flex: 1;
+            background: white;
+            margin: 25px;
+            padding: 30px;
+            border-radius: 12px;
+            height: 440px;
+        }
+
+        .container h2 {
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #4f46e5;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .add-btn {
+            background: #4f46e5;
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .add-btn:hover {
+            background: #4338ca;
+        }
+
+        /* Media Queries */
+
+        /* Tablet & Laptops */
+        @media (max-width: 768px) {
+            .main {
+                flex-direction: column;
+                height: auto;
+                overflow: visible;
+            }
+
+            .left-menu {
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+                padding: 15px 25px;
+            }
+
+            .container {
+                margin: 20px;
+                height: auto;
+            }
+        }
+
+        /* Mobile Phone */
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 1rem 5%;
+            }
+
+            .navbar h1 {
+                font-size: 22px;
+            }
+
+            .left-menu {
+                padding: 15px;
+            }
+
+            .container {
+                margin: 15px;
+                padding: 20px;
+            }
+
+            .add-btn {
+                padding: 14px;
+                font-size: 16px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+        <h1>Add User</h1>
+    </nav>
+
+    <!-- MAIN -->
+
+    <div class="main">
+
+        <!-- LEFT MENU -->
+
+        <div class="left-menu">
+
+            <!-- <ul class="user-list">
+
+                {% for u in users %}
+
+                <li>
+                    <a href="{% url 'edit_user' u.username %}">
+                        {{ u.username }}
+                    </a>
+                </li>
+
+                {% endfor %}
+
+            </ul> -->
+
+            <a href="{% url 'menu' %}" class="back-btn">
+                Back
+            </a>
+
+        </div>
+
+        <!-- ADD FORM -->
+
+        <div class="container">
+
+            <h2>Add User</h2>
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <label>Username</label>
+                <input type="text"
+                       name="username"
+                       required>
+
+                <label>Password</label>
+                <input type="text"
+                       name="password"
+                       required>
+
+                <label>Group User</label>
+                <input type="text"
+                       name="id_group_user"
+                       required>
+
+                <div class="buttons">
+                    <button type="submit" class="add-btn">
+                        Add User
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
