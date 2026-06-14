@@ -18,5 +18,10 @@ Virtual environment sangat direkomendasikan agar *library* (dependensi) proyek i
 Buka terminal/command prompt, arahkan ke folder tempat Anda ingin menyimpan proyek, dan jalankan perintah:
 
 ```bash
-# Membuat virtual environment dengan nama "venv"
-python -m venv venv
+# Membuat virtual environment dengan nama "myworld"
+python -m venv myworld
+
+Aktifkan virtual environment
+
+```bash
+myworld/Scripts/activate
