@@ -20,8 +20,16 @@ Buka terminal/command prompt, arahkan ke folder tempat Anda ingin menyimpan proy
 ```bash
 # Membuat virtual environment dengan nama "myworld"
 python -m venv myworld
+```
 
 Aktifkan virtual environment
 
 ```bash
+# Windows
 myworld/Scripts/activate
+
+# Linux/macOS
+source myworld/bin/activate
+```
+
+
