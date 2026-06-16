@@ -59,3 +59,30 @@ python manage.py runserver 0.0.0.0:8000
 ```
 
 Setelah itu, buka browser dan ketik 127.0.0.1:8000 untuk mengaktivasi projek Django
+
+Sebelum menyambungkan django dengan python, unduh library mssql agar terjadi koneksi antara sql server dan python
+
+```bash
+python -m pip install mssql
+```
+
+Lalu, buka settings.py dan ubah kolom DATABASE menjadi database yang anda miliki:
+
+```bash
+DATABASES = {
+    'default': {
+        'ENGINE': 'mssql',
+        'NAME': 'nama_database',
+        'USER': 'username',
+        'PASSWORD': 'password',
+        'HOST': 'nama_server',
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',
+        }
+    },
+
+    'django_builtin': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3'
+    },
+}
