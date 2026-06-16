@@ -27,7 +27,7 @@ Aktifkan virtual environment
 
 ```bash
 # Windows
-myworld/Scripts/activate
+myworld\Scripts\activate
 
 # Linux/macOS
 source myworld/bin/activate
@@ -47,3 +47,15 @@ django-admin startproject project_1 .
 ```
 
 Catatan: Tanda titik . di akhir perintah berguna agar Django membuat file proyek di folder saat ini tanpa membuat sub-folder baru yang bertumpuk.
+
+Setelah project dibuat, copy seluruh folder project_1 di GitHub dan ganti file bawaan yang telah di setup saat pembuatan project.
+
+Lalu, navigasi ke folder yang terdapat file manage.py di dalamnya dan ketik command berikut:
+
+```bash
+python manage.py runserver
+# Jika suatu projek ingin diakses dari device lain, lakukan
+python manage.py runserver 0.0.0.0:8000
+```
+
+Setelah itu, buka browser dan ketik 127.0.0.1:8000 untuk mengaktivasi projek Django
